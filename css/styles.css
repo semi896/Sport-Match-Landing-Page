@@ -1,0 +1,21 @@
+* ==============================
+   SPORT MATCH - LANDING PAGE
+   ============================== */
+
+
+/* ---------- VARIABLES ---------- */
+
+:root {
+    --primary: #0D6EFD;
+    --secondary: #198754;
+    --dark: #212529;
+    --gray: #6C757D;
+    --light: #F8F9FA;
+    --white: #FFFFFF;
+    --danger: #DC3545;
+    --warning: #FFC107;
+
+    --container: 1180px;
+    --radius: 16px;
+}
+ 
