@@ -213,4 +213,4 @@ dialog p { color: var(--muted); margin-bottom: 24px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
-}
+} 
