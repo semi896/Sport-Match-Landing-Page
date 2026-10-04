@@ -1,10 +1,310 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sport Match | Encuentra con quién jugar</title>
-
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sport Match | Find your game</title>
+  <meta name="description" content="Sport Match conecta jugadores con actividades deportivas en Lima. Busca partidos, solicita tu cupo o publica tu propia actividad.">
+  <link rel="icon" type="image/png" href="assets/img/emblem.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+<body>
+  <a class="skip-link" href="#contenido" data-i18n="skip">Saltar al contenido</a>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="#inicio" aria-label="Sport Match - Inicio">
+        <img src="assets/img/emblem.png" alt="" width="64" height="47">
+        <span>Sport Match</span>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="menu" aria-expanded="false" data-i18n-aria="menu_label" aria-label="Abrir menú">&#9776;</button>
+
+      <nav class="nav" id="menu" aria-label="Principal">
+        <ul class="nav__list">
+          <li><a class="nav__link active" href="#inicio" data-i18n="nav_home">Inicio</a></li>
+          <li><a class="nav__link" href="#actividades" data-i18n="nav_search">Buscar Partidos</a></li>
+          <li><a class="nav__link" href="#organizadores" data-i18n="nav_create">Crear Evento</a></li>
+          <li><a class="nav__link" href="#jugadores" data-i18n="nav_how">Cómo funciona</a></li>
+        </ul>
+        <div class="nav__actions">
+          <label class="sr-only" for="lang" data-i18n="lang_label">Idioma</label>
+          <select class="lang-select" id="lang">
+            <option value="es">ES</option>
+            <option value="en">EN</option>
+          </select>
+          <button class="btn" type="button" data-dialog="login" data-i18n="login">Iniciar sesión</button>
+          <button class="btn btn--primary" type="button" data-dialog="register" data-i18n="register">Registrarse</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div>
+          <h1 id="hero-title" data-i18n="hero_title">Encuentra tu partido ideal</h1>
+          <p class="hero__text" data-i18n="hero_text">Descubre actividades deportivas en Lima, conoce jugadores de tu nivel y solicita tu cupo en un solo lugar.</p>
+
+          <form class="search card" id="search-form" role="search" novalidate>
+            <label class="sr-only" for="q" data-i18n="search_label">Buscar actividades</label>
+            <input class="search__input" type="search" id="q" name="q" data-i18n-placeholder="search_placeholder" placeholder="Buscar por deporte, distrito o recinto deportivo" autocomplete="off">
+
+            <div class="search__filters">
+              <div>
+                <label class="sr-only" for="f-sport" data-i18n="f_sport">Deporte</label>
+                <select class="field" id="f-sport">
+                  <option value="" data-i18n="f_sport">Deporte</option>
+                  <option value="futbol" data-i18n="sport_futbol">Fútbol</option>
+                  <option value="basquet" data-i18n="sport_basquet">Básquetbol</option>
+                  <option value="tenis" data-i18n="sport_tenis">Tenis</option>
+                  <option value="voley" data-i18n="sport_voley">Vóley</option>
+                  <option value="running" data-i18n="sport_running">Running</option>
+                </select>
+              </div>
+              <div>
+                <label class="sr-only" for="f-district" data-i18n="f_district">Distrito</label>
+                <select class="field" id="f-district">
+                  <option value="" data-i18n="f_district">Distrito</option>
+                  <option>Miraflores</option>
+                  <option>Barranco</option>
+                  <option>San Miguel</option>
+                  <option>San Isidro</option>
+                  <option>Surco</option>
+                  <option>Los Olivos</option>
+                </select>
+              </div>
+              <div>
+                <label class="sr-only" for="f-time" data-i18n="f_time">Fecha/Hora</label>
+                <select class="field" id="f-time">
+                  <option value="" data-i18n="f_time">Fecha/Hora</option>
+                  <option value="manana" data-i18n="tm_morning">Mañana</option>
+                  <option value="tarde" data-i18n="tm_afternoon">Tarde</option>
+                  <option value="noche" data-i18n="tm_evening">Noche</option>
+                </select>
+              </div>
+              <div>
+                <label class="sr-only" for="f-level" data-i18n="f_level">Nivel</label>
+                <select class="field" id="f-level">
+                  <option value="" data-i18n="f_level">Nivel</option>
+                  <option value="principiante" data-i18n="lvl_principiante">Principiante</option>
+                  <option value="intermedio" data-i18n="lvl_intermedio">Intermedio</option>
+                  <option value="avanzado" data-i18n="lvl_avanzado">Avanzado</option>
+                  <option value="libre" data-i18n="lvl_libre">Libre</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="search__actions">
+              <button class="btn btn--primary" type="submit" data-i18n="btn_search">Buscar Partidos</button>
+              <button class="btn" type="button" data-dialog="publish" data-i18n="btn_publish">Publicar Actividad</button>
+              <button class="link-btn" type="button" id="advanced-toggle" aria-expanded="false" aria-controls="advanced"><span data-i18n="adv_filter">Filtro Avanzado</span> &#9662;</button>
+            </div>
+            <div class="search__advanced" id="advanced" hidden>
+              <label><input type="checkbox" id="only-available"> <span data-i18n="only_available">Mostrar solo actividades con cupos disponibles</span></label>
+            </div>
+          </form>
+        </div>
+
+        <div class="hero__logo card">
+          <img src="assets/img/logo.png" alt="Logo de Sport Match: escudo con balones y el lema Find your game" width="341" height="330">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sports-title">
+      <div class="container">
+        <h2 class="section__title" id="sports-title" data-i18n="sec_sports">Explora por deporte</h2>
+        <div class="sports" id="sports"></div>
+      </div>
+    </section>
+
+    <section class="section section--gray" id="actividades" aria-labelledby="near-title">
+      <div class="container">
+        <div class="results-head">
+          <h2 id="near-title" data-i18n="sec_near">Actividades cerca de ti</h2>
+          <div class="toggle" role="group" aria-label="Vista">
+            <button class="btn" type="button" id="view-list" aria-pressed="true" data-i18n="view_list">Lista</button>
+            <button class="btn" type="button" id="view-map" aria-pressed="false" data-i18n="view_map">Mapa</button>
+          </div>
+        </div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+
+        <div class="results" id="results">
+          <div class="cards" id="cards"></div>
+
+          <aside class="map-panel" aria-label="Mapa de actividades">
+            <svg viewBox="0 0 340 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Mapa de ejemplo con las actividades cercanas">
+              <rect width="340" height="560" fill="#e9eef3"/>
+              <rect x="0" y="390" width="160" height="170" fill="#bfd9f2"/>
+              <rect x="190" y="40" width="100" height="64" fill="#cfe8d5"/>
+              <rect x="40" y="250" width="95" height="70" fill="#cfe8d5"/>
+              <rect x="205" y="420" width="110" height="80" fill="#cfe8d5"/>
+              <rect x="0" y="180" width="340" height="8" fill="#fff"/>
+              <rect x="0" y="370" width="340" height="7" fill="#fff"/>
+              <rect x="130" y="0" width="8" height="560" fill="#fff"/>
+              <rect x="245" y="0" width="7" height="560" fill="#fff"/>
+              <g fill="#dc3545" stroke="#fff" stroke-width="2">
+                <circle cx="60" cy="80" r="8"/><circle cx="295" cy="170" r="8"/><circle cx="75" cy="310" r="8"/><circle cx="290" cy="340" r="8"/><circle cx="190" cy="470" r="8"/>
+              </g>
+              <circle cx="170" cy="260" r="14" fill="#0d6efd" stroke="#fff" stroke-width="3"/>
+            </svg>
+            <div class="map-tip"><strong>Fútbol 7 en Miraflores</strong><span data-i18n="map_tip">5 / 14 cupos · Intermedio</span></div>
+          </aside>
+        </div>
+
+        <div class="more"><button class="btn" type="button" id="show-all" aria-expanded="false" data-i18n="show_all">Ver todas las actividades</button></div>
+      </div>
+    </section>
+
+    <section class="section" id="jugadores" aria-labelledby="players-title">
+      <div class="container">
+        <h2 class="section__title" id="players-title" data-i18n="sec_players">Para Jugadores</h2>
+        <p class="section__subtitle" data-i18n="sec_players_sub">Encuentra compañeros y actividades a tu medida.</p>
+        <div class="rows">
+          <article class="row-alt">
+            <div class="row-alt__text"><h3 class="h2" data-i18n="p1_t">Crea tu perfil deportivo</h3><p data-i18n="p1_d">Indica tus deportes, nivel y disponibilidad para encontrar actividades compatibles.</p></div>
+            <div class="row-alt__img" style="background:#dce9ff"><img src="assets/img/ic_run.png" alt="" width="120" height="120"></div>
+          </article>
+          <article class="row-alt">
+            <div class="row-alt__text"><h3 class="h2" data-i18n="p2_t">Busca y filtra actividades</h3><p data-i18n="p2_d">Encuentra partidos por deporte, distrito, fecha y horario en segundos.</p></div>
+            <div class="row-alt__img" style="background:#e6f4d7"><img src="assets/img/ic_tennis.png" alt="" width="120" height="120"></div>
+          </article>
+          <article class="row-alt">
+            <div class="row-alt__text"><h3 class="h2" data-i18n="p3_t">Solicita tu cupo</h3><p data-i18n="p3_d">Revisa el detalle, conoce a los participantes y únete al partido.</p></div>
+            <div class="row-alt__img" style="background:#d6ede0"><img src="assets/img/ic_ball.png" alt="" width="120" height="120"></div>
+          </article>
+        </div>
+        <div class="cta"><button class="btn btn--primary" type="button" data-dialog="register" data-i18n="btn_join">Unirme al Partido</button></div>
+      </div>
+    </section>
+
+
+
+    <section class="section section--gray" id="organizadores" aria-labelledby="orgs-title">
+      <div class="container">
+        <h2 class="section__title" id="orgs-title" data-i18n="sec_orgs">Para Organizadores</h2>
+        <p class="section__subtitle" data-i18n="sec_orgs_sub">Publica tus actividades y completa tus cupos.</p>
+        <div class="rows">
+          <article class="row-alt">
+            <div class="row-alt__text"><h3 class="h2" data-i18n="o1_t">Publica tu actividad</h3><p data-i18n="o1_d">Registra tu partido en tres pasos: deporte, ubicación y cupos.</p></div>
+            <div class="row-alt__img" style="background:#ffe5d0"><img src="assets/img/ic_basket.png" alt="" width="120" height="120"></div>
+          </article>
+          <article class="row-alt">
+            <div class="row-alt__text"><h3 class="h2" data-i18n="o2_t">Controla los cupos</h3><p data-i18n="o2_d">Consulta participantes y solicitudes pendientes desde Mis Actividades.</p></div>
+            <div class="row-alt__img" style="background:#fff3cd"><img src="assets/img/ic_volley.png" alt="" width="120" height="120"></div>
+          </article>
+          <article class="row-alt">
+            <div class="row-alt__text"><h3 class="h2" data-i18n="o3_t">Actualiza cuando quieras</h3><p data-i18n="o3_d">Modifica la información y tus jugadores verán los cambios.</p></div>
+            <div class="row-alt__img" style="background:#dce9ff"><img src="assets/img/ic_ball.png" alt="" width="120" height="120"></div>
+          </article>
+        </div>
+        <div class="cta"><button class="btn btn--primary" type="button" data-dialog="publish" data-i18n="btn_publish">Publicar Actividad</button></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="panel-title">
+      <div class="container">
+        <h2 class="section__title" id="panel-title" data-i18n="sec_panel">Actividades Próximas y Perfil Deportivo</h2>
+        <div class="panel" id="panel">
+          <div class="profile card">
+            <div class="profile__head">
+              <div class="avatar"><img src="assets/img/ic_run.png" alt="" width="36" height="36"></div>
+              <div><h3 data-i18n="profile_title">Mi Perfil Deportivo</h3><p class="muted caption" style="font-size:14px" data-i18n="profile_name">Tu nombre de usuario</p></div>
+            </div>
+            <div class="meter"><span class="meter__label" data-i18n="pref_sports">Deportes preferidos</span><div class="meter__bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><span style="width:80%"></span></div></div>
+            <div class="meter"><span class="meter__label" data-i18n="pref_level">Nivel</span><div class="meter__bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"><span style="width:60%"></span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--gray" id="contacto" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section__title" id="contact-title" data-i18n="sec_contact">Contáctanos</h2>
+        <form class="form card" id="contact-form" novalidate>
+          <div class="form__row">
+            <div class="form__group">
+              <label for="c-name" data-i18n="c_names">Nombres</label>
+              <input class="field" type="text" id="c-name" name="nombres" autocomplete="given-name" required aria-describedby="e-name">
+              <p class="error" id="e-name"></p>
+            </div>
+            <div class="form__group">
+              <label for="c-surname" data-i18n="c_surnames">Apellidos</label>
+              <input class="field" type="text" id="c-surname" name="apellidos" autocomplete="family-name" required aria-describedby="e-surname">
+              <p class="error" id="e-surname"></p>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label for="c-phone" data-i18n="c_phone">Número de teléfono</label>
+              <input class="field" type="tel" id="c-phone" name="telefono" autocomplete="tel" inputmode="numeric" aria-describedby="e-phone">
+              <p class="error" id="e-phone"></p>
+            </div>
+            <div class="form__group">
+              <label for="c-email" data-i18n="c_email">Email</label>
+              <input class="field" type="email" id="c-email" name="email" autocomplete="email" required aria-describedby="e-email">
+              <p class="error" id="e-email"></p>
+            </div>
+          </div>
+          <div class="form__group">
+            <label for="c-msg" data-i18n="c_message">Mensaje</label>
+            <textarea class="field" id="c-msg" name="mensaje" required aria-describedby="e-msg"></textarea>
+            <p class="error" id="e-msg"></p>
+          </div>
+          <button class="btn btn--primary btn--block" type="submit" data-i18n="c_send">Enviar</button>
+          <p class="form__ok" id="form-ok" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <span class="footer__logo"><img src="assets/img/emblem.png" alt="Sport Match" width="64" height="47"></span>
+          <p class="muted-light" data-i18n="footer_tagline">Encuentra tu partido. Find your game.</p>
+        </div>
+        <div>
+          <h3 data-i18n="f_platform">Plataforma</h3>
+          <ul>
+            <li><a href="#inicio" data-i18n="nav_home">Inicio</a></li>
+            <li><a href="#actividades" data-i18n="nav_search">Buscar Partidos</a></li>
+            <li><a href="#organizadores" data-i18n="nav_create">Crear Evento</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 data-i18n="f_help">Ayuda</h3>
+          <ul>
+            <li><a href="#contacto" data-i18n="f_terms">Términos y Condiciones</a></li>
+            <li><a href="#contacto" data-i18n="f_privacy">Política de Privacidad</a></li>
+            <li><a href="#contacto" data-i18n="f_contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer__lang">
+          <h3 data-i18n="f_lang">Idioma</h3>
+          <button type="button" data-lang="es" aria-pressed="true">Español</button>
+          <button type="button" data-lang="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+      <p class="footer__bottom">&copy; <span id="year">2026</span> Sport Match. <span data-i18n="f_rights">Todos los derechos reservados.</span></p>
+    </div>
+  </footer>
+
+  <dialog id="dialog" aria-labelledby="dlg-title" aria-describedby="dlg-text">
+    <h2 id="dlg-title"></h2>
+    <p id="dlg-text"></p>
+    <div class="dialog__actions">
+      <button class="btn" type="button" id="dlg-close" data-i18n="close">Cerrar</button>
+    </div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
